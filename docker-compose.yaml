@@ -1,10 +1,14 @@
 services:
   ubuntu-docker:
-    build: .
+    build:
+      context: .
+      args:
+        SSH_USER: ${SSH_USER}
+        SSH_PASSWORD: ${SSH_PASSWORD}
     container_name: ubuntu-docker
-    privileged: true
     ports:
-      - "2222:22"  # Host port 2222 maps to container's SSH port
+      - "2222:22"
+    privileged: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     mem_limit: 2g
