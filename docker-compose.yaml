@@ -1,0 +1,13 @@
+services:
+  ubuntu-docker:
+    build: .
+    container_name: ubuntu-docker
+    privileged: true
+    ports:
+      - "2222:22"  # Host port 2222 maps to container's SSH port
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    mem_limit: 2g
+    cpus: 1.0
+    tty: true
+    stdin_open: true
